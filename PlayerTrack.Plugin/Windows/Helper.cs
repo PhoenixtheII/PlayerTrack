@@ -449,7 +449,7 @@ public static class Helper
         return isChanged;
     }
 
-    public struct EndUnconditionally(Action endAction, bool success) : ImRaii.IEndObject
+    public struct EndUnconditionally(Action endAction, bool success)
     {
         public bool Success { get; } = success;
 
@@ -467,7 +467,7 @@ public static class Helper
     }
 
     // Use end-function only on success.
-    private struct EndConditionally(Action endAction, bool success) : ImRaii.IEndObject
+    public struct EndConditionally(Action endAction, bool success) : IDisposable
     {
         public bool Success { get; } = success;
 
@@ -476,17 +476,11 @@ public static class Helper
 
         public void Dispose()
         {
-            if (Disposed)
-                return;
-
-            if (Success)
-                EndAction();
-
-            Disposed = true;
+            // TODO release managed resources here
         }
     }
 
-    public static ImRaii.IEndObject Menu(string label)
+    public static EndConditionally Menu(string label)
     {
         return new EndConditionally(ImGui.EndMenu, ImGui.BeginMenu(label));
     }

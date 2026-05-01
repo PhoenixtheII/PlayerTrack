@@ -45,15 +45,15 @@ public class PlayerLocationManager
         OnLocationEnded = null;
     }
 
-    private void ProcessTerritoryChange(ushort newTerritoryType)
+    private void ProcessTerritoryChange(uint newTerritoryType)
     {
         if (CurrentTerritoryType != 0)
             OnLocationEnded?.Invoke(Sheets.Locations[CurrentTerritoryType]);
 
         if (newTerritoryType != 0)
-            OnLocationStarted?.Invoke(Sheets.Locations[newTerritoryType]);
+            OnLocationStarted?.Invoke(Sheets.Locations[(ushort)newTerritoryType]);
 
-        CurrentTerritoryType = newTerritoryType;
+        CurrentTerritoryType = (ushort)newTerritoryType;
     }
 
     private void OnLogout(int type, int code)

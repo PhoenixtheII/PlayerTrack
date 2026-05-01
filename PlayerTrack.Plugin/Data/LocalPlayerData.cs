@@ -1,4 +1,5 @@
-﻿using Dalamud.Utility;
+﻿using System;
+using Dalamud.Utility;
 
 namespace PlayerTrack.Data;
 
@@ -22,10 +23,12 @@ public class LocalPlayerData
     /// </summary>
     public uint HomeWorld;
 
+    public byte[]? Customize;
+
     /// <summary>
     /// Player Customize Array.
     /// </summary>
-    public byte[]? Customize;
+    //public Span<byte> Customize { get; init; } = Span<byte>.Empty;
 
     /// <summary>
     /// Validate if local player is valid.

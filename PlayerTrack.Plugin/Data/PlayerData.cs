@@ -1,4 +1,6 @@
-﻿namespace PlayerTrack.Data;
+﻿using System;
+
+namespace PlayerTrack.Data;
 
 /// <summary>
 /// Subset of key properties from IPlayerCharacter for eventing.
@@ -19,7 +21,7 @@ public class PlayerData
     /// <summary>
     /// Player Customize Array.
     /// </summary>
-    public byte[]? Customize;
+    //public Span<byte> Customize { get; init; }
 
     /// <summary>
     /// Player HomeWorld ID.
@@ -60,6 +62,8 @@ public class PlayerData
     /// Player Content ID.
     /// </summary>
     public ulong ContentId;
+
+    public byte[]? Customize;
 
     /// <summary>
     /// Is Player Valid.
